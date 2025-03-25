@@ -6,11 +6,11 @@
 /*   By: jfranco <jfranco@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:46:03 by jfranco           #+#    #+#             */
-/*   Updated: 2025/02/27 10:25:43 by jfranco          ###   ########.fr       */
+/*   Updated: 2025/03/25 18:09:53 by jfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../include/cube3d.h"
 
 static char	*read_new_line(int fd, char *stash)
 {

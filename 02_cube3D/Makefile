@@ -9,9 +9,14 @@ endef
 # Compiler and flags
 CC = cc
 CFLAGS = -g3 -Wall -Wextra -Werror -Iminilibx -Isrc
+SRCDIR = src
 
 # Source files and objects
-SRCS = 
+SRCS = 	$(SRCDIR)/GNL/get_next_line.c \
+	$(SRCDIR)/parsing/proccess_parsing.c \
+	$(SRCDIR)/parsing/parsing_utilis.c \
+	$(SRCDIR)/clean_up_and_error/clean_err.c \
+	$(SRCDIR)/main.c \
 
 OBJ_DIR = obj
 OBJ = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
@@ -40,6 +45,7 @@ all: $(NAME)
 # Create the object directory before compiling
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Compile MiniLibX only if needed
 
