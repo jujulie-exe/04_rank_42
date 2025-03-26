@@ -6,7 +6,7 @@
 /*   By: jfranco <jfranco@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:01:34 by jfranco           #+#    #+#             */
-/*   Updated: 2025/03/25 17:44:01 by jfranco          ###   ########.fr       */
+/*   Updated: 2025/03/26 16:56:43 by jfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	check_valid_name(char *name)
 {
 	char	*ptr;
 
-	ptr = ft_strrchr(name, ".")
+	ptr = ft_strrchr(name, '.');
 	if (ptr)
 	{
-		if (!ft_strcmp(ptr + 1, "cub", 4));
+		if (!ft_strncmp(ptr + 1, "cub", 4))
 			return (0);
 		else
 		return (ft_fprintf(2,"%s", "Error\n is not .cub extession\n"), -1);
@@ -30,7 +30,7 @@ int	check_valid_name(char *name)
 
 int	ptr_color(t_data_maps *maps)
 {
-	char **srr = { "C ", "F ", NULL};
+	char *srr[] = { "C ", "F ", NULL};
 	size_t	i;
 	size_t	y;
 
@@ -40,7 +40,7 @@ int	ptr_color(t_data_maps *maps)
 		y = 0;
 		while (srr[y])
 		{
-			if (!strncmp(maps->argv[i], srr[y], 2))
+			if (!ft_strncmp(maps->argv[i], srr[y], 2))
 			{
 				if (y == 0)
 					maps->up_color = maps->argv[i];
@@ -51,11 +51,12 @@ int	ptr_color(t_data_maps *maps)
 		}
 		i++;
 	}
+	return (0);
 }
 
 void	ptr_texture(t_data_maps *maps)
 {
-	char **srr = {"NE ", "WE ", "NO ", "NE ", NULL}
+	char *srr[] = {"NE ", "WE ", "NO ", "NE ", NULL};
 	size_t	i;
 	size_t	y;
 
@@ -84,26 +85,39 @@ void	ptr_texture(t_data_maps *maps)
 
 int	proccesing_file_cub(t_data_maps *maps)
 {
-	char	*line;
-	char	tmp;
+	char	*line = NULL;
+	char	*tmp = NULL;
 	int	fd;
 	
 	if (check_valid_name(maps->name_maps))
 		exit(-1);
-	tmp = ft_calloc(sizeof(char *), 1);
-	fd = open(maps->name_mpas, O_RDNLY);
-	while(tmp != NULL)
+	fd = open(maps->name_maps, O_RDONLY);
+	if (fd < 0)
+		ft_free_all_and_exit(NULL, "FILE DON'EXTIST");
+	//tmp = ft_calloc(sizeof(char *), 1);
+	line = ft_calloc(1, sizeof(char));
+	while(line != NULL)
 	{
 		tmp = get_next_line(fd);
-		if (tmp == NULL)
+		if (!tmp)
 			break;
-		ft_strjoin(line, tmp);
+		char *ptr = line;
+		line = ft_strjoin(line, tmp);
+		free(ptr);
 		free(tmp);
 	}
-	maps->argv = ft_split(line, "\n");
+	maps->argv = ft_split(line, '\n');
 	free(line);
 	if (maps->argv == NULL)
-		return (-1)
+		return (-1);
+//	tmp = ft_strtrim(argv[0], " 	");
+//	if (tmp != NULL && tmp != maps->argv[i])
+//	{
+//		free(maps->argv[i]);
+//		maps->argv[i] = tmp
+//	}
+//	else if (tmp != NULL)
+//		free(tmp);
 	ptr_texture(maps);
 	ptr_color(maps);
 	validazione(maps);

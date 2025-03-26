@@ -1,54 +1,54 @@
+# Nome dell'eseguibile
 NAME = cube3D
 
+# Header
 define HEADER
-	\033[38;5;213m
-
-	\033[0m
+\033[38;5;213m\033[0m
 endef
 
-# Compiler and flags
+# Compiler e flag
 CC = cc
 CFLAGS = -g3 -Wall -Wextra -Werror -Iminilibx -Isrc
+
+# Directory sorgenti e oggetti
 SRCDIR = src
-
-# Source files and objects
-SRCS = 	$(SRCDIR)/GNL/get_next_line.c \
-	$(SRCDIR)/parsing/proccess_parsing.c \
-	$(SRCDIR)/parsing/parsing_utilis.c \
-	$(SRCDIR)/clean_up_and_error/clean_err.c \
-	$(SRCDIR)/main.c \
-
 OBJ_DIR = obj
-OBJ = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
+
+# File sorgente
+SRCS =  $(SRCDIR)/GNL/get_next_line.c \
+        $(SRCDIR)/parsing/proccess_parsing.c \
+        $(SRCDIR)/parsing/parsing_utilis.c \
+        $(SRCDIR)/clean_up_and_error/clean_err.c \
+        $(SRCDIR)/main.c
+
+# Creazione degli oggetti (o) a partire dai sorgenti
+OBJ = $(SRCS:$(SRCDIR)/%.c=$(OBJ_DIR)/%.o)
 
 # MiniLibX paths
-MINILIBX_DIR = minilibx
-MINILIBX_LIB = -L$(MINILIBX_DIR) -lmlx_Linux
+MINILIBX_DIR = ./minilibx
+MINILIBX_LIB = -L$(MINILIBX_DIR) -lmlx 
 MINILIBX_INCLUDE = -I$(MINILIBX_DIR)
 
-# Libraries to link
-LIB = $(MINILIBX_LIB) -L/usr/lib -lXext -lX11 -lm -lz
 
-#Libft path
+# Libft path
 LIBFT_DIR = libft_fprintf/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-#Fprintf
+# Fprintf
 FPRINTF_DIR = libft_fprintf/ftprintf
 FPRINTF = $(FPRINTF_DIR)/libftfprintf.a
+# Librerie da linkare
+LIB = $(MINILIBX_LIB) -lmlx_Linux $(LIBFT) $(FPRINTF) -L/usr/lib -lXext -lX11 -lm -lz
 
-# Default target
+# Target predefiniti
 all: $(NAME)
-	@echo "$$HEADER"
-	@echo "\033[38;5;213m(っ◔◡◔)っ ♥ Ecole 19 | Fractol | Julie ♥\033[0m"
 
-# Create the object directory before compiling
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
+# Creazione della directory obj/GNL/ e compilazione degli oggetti
+$(OBJ_DIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(dir $@)  # Crea tutte le sottodirectory necessarie
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-# Compile MiniLibX only if needed
-
+# Regola per compilare minilibx
 minilibx:
 	@echo "\033[38;5;208mCompiling MiniLibX...\033[0m"
 	@if [ ! -f $(MINILIBX_DIR)/libmlx_Linux.a ] || [ $(MINILIBX_DIR)/mlx.h -nt $(MINILIBX_DIR)/libmlx_Linux.a ]; then \
@@ -56,23 +56,22 @@ minilibx:
 	else \
 		echo "MiniLibX already compiled"; \
 	fi
-libft:
+
+# Regola per compilare libft
+$(LIBFT_RULES):
 	@echo "\033[38;5;208mCompiling libft...\033[0m"
 	$(MAKE) -C  $(LIBFT_DIR) --silent
 
-fprintf:
+# Regola per compilare fprintf
+$(FPRINTF_RULES):
 	@echo "\033[38;5;208mCompiling fprintf...\033[0m"
 	$(MAKE) -C $(FPRINTF_DIR) --silent
 
-# Compile the program
-$(NAME): $(OBJ_DIR) $(OBJ) minilibx libft fprintf
+# Regola per compilare il programma
+$(NAME): $(OBJ) $(FPRINTF_RULES) $(LIBFT_RULES) minilibx
 	$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $(NAME)
 
-# Rule to compile .c into .o
-$(OBJ_DIR)/%.o: src/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# Clean objects and MiniLibX
+# Pulizia oggetti e MiniLibX
 clean:
 	rm -rf $(OBJ_DIR)
 	@$(MAKE) -C $(MINILIBX_DIR) clean
@@ -80,19 +79,17 @@ clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@echo "File oggetto rimossi."
 
-# Clean everything (objects and executable)
+# Pulizia totale (oggetti e eseguibile)
 fclean: clean
 	rm -f $(NAME)
 	@echo "Eseguibile rimosso."
 
-# Recompile everything
+# Ricompilazione completa
 re: fclean all
 
-# Run the program
+# Esecuzione del programma
 run: re
 	./$(NAME)
-
-#debug: #con un main apposta che i return delle funzioni in un dubug.file.txt
 
 .PHONY: all clean fclean re run minilibx
 
