@@ -6,7 +6,7 @@
 /*   By: jfranco <jfranco@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:15:22 by jfranco           #+#    #+#             */
-/*   Updated: 2025/03/26 15:08:54 by jfranco          ###   ########.fr       */
+/*   Updated: 2025/03/27 17:13:47 by jfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	clear_and_open_path(char *str, t_mlx *mlx_ptr, int flags)
 	i = 0;
 	new_string[i] = '\0';
 	ptr = str + 2;
-	while (*ptr != '\0' && *ptr != ' ' && *ptr != '	')
+	while (*ptr == ' ' || *ptr == '	')
 		ptr++;
 	//ptr = strchr(str, ".");
 	while (ptr != NULL &&  i < PATH_MAX && (*ptr != ' ' && *ptr != '	' && *ptr != '\0'))
@@ -49,17 +49,28 @@ void	clear_and_open_path(char *str, t_mlx *mlx_ptr, int flags)
 	}
 	mlx_ptr->texture[flags] = mlx_xpm_file_to_image(mlx_ptr->mlx, new_string, (int *)WIDTH_XMP, (int *)HEIGHT_XMP);
 	if (!mlx_ptr->texture[flags])
-		ft_free_all_and_exit(mlx_ptr->ptr_maps, MSG_ERROR);
+		ft_free_all_and_exit(mlx_ptr->ptr_maps, MSG_ERROR_TX);
 }
 
 void	validazione(t_data_maps *maps)
 {
-	if (!(maps->path_no || maps->path_ne || maps->path_we || maps->path_so || maps->up_color || maps->down_color))
+	if ((maps->path_no &&  maps->path_ne && maps->path_we && maps->path_so && maps->up_color && maps->down_color))
+	{
+		clear_and_open_path(maps->path_no, maps->ptr_mlx, NO);
+		clear_and_open_path(maps->path_so, maps->ptr_mlx, SO);
+		clear_and_open_path(maps->path_we, maps->ptr_mlx, WE);
+		clear_and_open_path(maps->path_ne, maps->ptr_mlx, NE);
+		//check_and_charge_color(maps);
+	}
+	else
 		ft_free_all_and_exit(maps, MSG_ERROR);
-	clear_and_open_path(maps->path_no, maps->ptr_mlx, NO);
-	clear_and_open_path(maps->path_so, maps->ptr_mlx, SO);
-	clear_and_open_path(maps->path_we, maps->ptr_mlx, WE);
-	clear_and_open_path(maps->path_ne, maps->ptr_mlx, NE);
-	//check_and_charge_color(maps);
 }
-
+// void	clean_before_validity(t_dat_maps *ptr)
+// {
+// 	// cerchiamo dove si trova la mappa
+// 	
+// 	if (ptr->argv)
+// 	{
+// 	}
+// }
+	

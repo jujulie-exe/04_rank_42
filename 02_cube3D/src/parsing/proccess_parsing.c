@@ -6,7 +6,7 @@
 /*   By: jfranco <jfranco@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:01:34 by jfranco           #+#    #+#             */
-/*   Updated: 2025/03/26 16:56:43 by jfranco          ###   ########.fr       */
+/*   Updated: 2025/03/27 17:01:18 by jfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_valid_name(char *name)
 
 int	ptr_color(t_data_maps *maps)
 {
-	char *srr[] = { "C ", "F ", NULL};
+	char *srr[] = { "C ", "F ", "C	", "F	", NULL};
 	size_t	i;
 	size_t	y;
 
@@ -42,9 +42,9 @@ int	ptr_color(t_data_maps *maps)
 		{
 			if (!ft_strncmp(maps->argv[i], srr[y], 2))
 			{
-				if (y == 0)
+				if (y == 0 || y == 2)
 					maps->up_color = maps->argv[i];
-				if (y == 1)
+				if (y == 1 || y == 3)
 					maps->down_color = maps->argv[i];
 			}
 			y++;
@@ -56,7 +56,7 @@ int	ptr_color(t_data_maps *maps)
 
 void	ptr_texture(t_data_maps *maps)
 {
-	char *srr[] = {"NE ", "WE ", "NO ", "NE ", NULL};
+	char *srr[] = {"NE ", "WE ", "NO ", "SO ", "NE	", "WE	", "NO	", "SO	", NULL};
 	size_t	i;
 	size_t	y;
 
@@ -68,14 +68,14 @@ void	ptr_texture(t_data_maps *maps)
 		{
 			if (!ft_strncmp(maps->argv[i], srr[y], 3))
 			{
-				if (y == 0)
+				if (y == 0 || y == 4)
 					maps->path_ne = maps->argv[i];
-				else if (y == 1)
+				else if (y == 1 || y == 5)
 					maps->path_we = maps->argv[i];
-				else if (y == 2)
+				else if (y == 2 || y == 6)
 					maps->path_no = maps->argv[i];
-				else if (y == 3)
-					maps->path_ne = maps->argv[i];
+				else if (y == 3 || y == 7)
+					maps->path_so = maps->argv[i];
 			}
 			y++;
 		}
@@ -83,6 +83,98 @@ void	ptr_texture(t_data_maps *maps)
 	}
 }
 
+int is_valid_map_char(char c)
+{
+    return (c == '0' || c == '1' || c == '2' || 
+            c == 'N' || c == 'S' || c == 'E' || c == 'W' || 
+            c == ' ' || c == '\n' || c == '	');
+}
+
+int	serch_map_and_validate(char *str)
+{
+	size_t	i;
+	bool	valid;
+	size_t	index_maps;
+
+	i = 0;
+	valid = false;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '\n')
+		{
+			index_maps = i + 1;
+			valid = true;
+			while (str[index_maps])
+			{
+				if(!is_valid_map_char(str[index_maps]))
+				{
+					valid = false;
+					break ;
+				}
+				index_maps++;
+			}
+		}
+		if (valid == true)
+			break ;
+		i++;
+	}
+	if (valid == true)
+		return (str[i] = '#', 1);
+	return (0);
+}
+
+void	cleaning_arg(t_data_maps *ptr)
+{
+	size_t	i;
+	size_t	y;
+	size_t	count;
+
+	i = 0;
+	y = 0;
+	count = 0;
+	if (ptr->argv)
+	{
+		while (ptr->argv[i])
+		{
+			if(ft_strlen(ptr->argv[i]) > 0)
+				count++;
+			i++;
+		}
+
+	}
+	char **new_argv = malloc(sizeof(char **) * count + 1);
+	i = 0;
+	while (ptr->argv[i])
+	{
+		if(ft_strlen(ptr->argv[i]) > 0)
+		{
+			new_argv[y] = ft_strdup(ptr->argv[i]);
+			y++;
+		}
+		i++;
+
+	}
+	new_argv[y] = NULL;
+	ft_clean_argv(ptr);
+	ptr->argv = new_argv;
+}
+
+void	trim(t_data_maps *ptr)
+{
+	size_t	i = 0;
+	if (ptr->argv)
+	{
+		while (ptr->argv[i])
+		{
+			char *trim = ft_strtrim(ptr->argv[i], " 	");
+			free(ptr->argv[i]);
+			ptr->argv[i] = NULL;
+			ptr->argv[i] = trim;
+			i++;
+		}
+	}
+	cleaning_arg(ptr);
+}
 int	proccesing_file_cub(t_data_maps *maps)
 {
 	char	*line = NULL;
@@ -106,18 +198,22 @@ int	proccesing_file_cub(t_data_maps *maps)
 		free(ptr);
 		free(tmp);
 	}
-	maps->argv = ft_split(line, '\n');
+	// cerco la mapp
+	if (serch_map_and_validate(line) == 0)
+		exit(1);
+	maps->argv = ft_split(line, '#');
+	maps->map = ft_strdup(maps->argv[1]);
+	free(maps->argv[1]);
+	maps->argv[1] = NULL;
+	char **tmp_argv = ft_split(maps->argv[0], '\n');
+	free(maps->argv[0]);
+	free(maps->argv);
+	maps->argv = tmp_argv;
 	free(line);
+//qui dovrei trimmare piccolo ciclo while e via
 	if (maps->argv == NULL)
 		return (-1);
-//	tmp = ft_strtrim(argv[0], " 	");
-//	if (tmp != NULL && tmp != maps->argv[i])
-//	{
-//		free(maps->argv[i]);
-//		maps->argv[i] = tmp
-//	}
-//	else if (tmp != NULL)
-//		free(tmp);
+	trim(maps);
 	ptr_texture(maps);
 	ptr_color(maps);
 	validazione(maps);
