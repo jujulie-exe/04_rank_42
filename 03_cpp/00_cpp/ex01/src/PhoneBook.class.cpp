@@ -54,9 +54,10 @@ void	PhoneBook::add ( void )
 void	PhoneBook::_print_frmt(std::string str) const
 {
 	if (str.length() > 10)
-		std::cout << std::setfill ( ' ' ) << std::setw (10) << str.substr(0, 9) << "." << "|";
+		std::cout << std::setfill ( ' ' ) << std::setw (10) << str.substr(0, 8) + ".";
 	else
-		std::cout << std::setfill ( ' ' ) << std::setw (10) << str << "|";
+		std::cout << std::setfill ( ' ' ) << std::setw (10) << str;
+	std::cout << "|";
 	return ;
 }
 
