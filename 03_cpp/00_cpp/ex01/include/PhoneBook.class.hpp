@@ -14,7 +14,9 @@ class	PhoneBook
 		size_t	index;
 	private:
 		Contact	_list[8];
-		void	_print_frmt(std::string str) const ;
+		void	_print_frmt(const std::string& str) const ;
+		bool	_all_digit(const std::string& str) const;
+		bool	_getline_value(std::string& str);
 };
 
 
