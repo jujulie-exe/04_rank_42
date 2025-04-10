@@ -1,18 +1,25 @@
-NAME = megaphone
+
+NAME = Phonebook
 
 CC = g++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC_DIR = srcs
-SRCS = $(SRC_DIR)/megaphone.cpp
+SRC_DIR = src
+SRCS = $(SRC_DIR)/main.cpp \
+       $(SRC_DIR)/PhoneBook.class.cpp \
+       $(SRC_DIR)/Contac.class.cpp 
 OBJ_DIR = obj
+
 # Usa una sostituzione più complessa per mantenere la struttura delle directory
-OBJ = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+OBJ = $(SRCS:$(SRCDIR)/%.c=$(OBJ_DIR)/%.o)
 
 # Default target
 all: $(NAME)
 
 # Create the object directory before compiling
+ # $(OBJ_DIR)/%.o: $(SRCDIR)/%.c
+ # 	@mkdir -p $(dir $@)
+ # 	@$(CC) $(CFLAGS) -c $< -o $@
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 

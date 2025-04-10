@@ -9,9 +9,10 @@ int	main()
 		std::getline(std::cin, cmd);
 		if (cmd == "ADD")
 			istance.add();
-		if (cmd == "SRC")
+		if (cmd == "SEARCH")
 			istance.search();
 		if (cmd == "EXIT")
 			break ;
 	}
+	return (0);
 }

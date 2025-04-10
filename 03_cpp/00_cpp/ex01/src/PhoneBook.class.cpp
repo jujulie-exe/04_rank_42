@@ -1,6 +1,7 @@
 #include "../include/PhoneBook.class.hpp"
 #include "../include/Contac.class.hpp"
 #include <iostream>
+#include <sstream>
 
 
 PhoneBook::PhoneBook( void )
@@ -52,7 +53,6 @@ void	PhoneBook::add ( void )
 	}
 
 	std::string fname, lname, nname, dsc, input_nbr;
-	size_t nbr = 0;
 	
 	std::cout << "\033[1;36mInserisci First Name: \033[0m";
 	if (_getline_value(fname) == false)
@@ -74,8 +74,7 @@ void	PhoneBook::add ( void )
 	if (_getline_value(dsc) == false)
 		return ;
 	
-	nbr = std::stol(input_nbr);
-	_list[i] = Contact(fname.c_str(), lname.c_str(), nname.c_str(), nbr, dsc.c_str());
+	_list[i] = Contact(fname.c_str(), lname.c_str(), nname.c_str(), input_nbr.c_str(), dsc.c_str());
 	
 	std::cout << "Contatto aggiunto all’indice " << i << std::endl;
 }
@@ -89,6 +88,14 @@ void	PhoneBook::_print_frmt(const std::string& str) const
 		std::cout << std::setfill ( ' ' ) << std::setw (10) << str;
 	std::cout << "|";
 	return ;
+}
+
+int	PhoneBook::_my_atoi(const std::string& str) const
+{
+	int i = 0;
+	std::stringstream ss(str);
+	ss >> i;
+	return (i);
 }
 
 void	PhoneBook::search( void ) const
@@ -115,7 +122,7 @@ void	PhoneBook::search( void ) const
 	std::getline (std::cin, input);
 	if (_all_digit(input) == false)
 		return ;
-	int i = std::stoi(input);
+	int i = _my_atoi(input);
 	if (i > y)
 		std::cout << "index don't exist" << std::endl;
 	else

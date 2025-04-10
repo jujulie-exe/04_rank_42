@@ -1,7 +1,7 @@
 NAME = megaphone
 
 CC = g++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC_DIR = srcs
 SRCS = $(SRC_DIR)/megaphone.cpp

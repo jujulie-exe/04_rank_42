@@ -17,6 +17,7 @@ class	PhoneBook
 		void	_print_frmt(const std::string& str) const ;
 		bool	_all_digit(const std::string& str) const;
 		bool	_getline_value(std::string& str);
+		int	_my_atoi(const std::string& str) const;
 };
 
 
