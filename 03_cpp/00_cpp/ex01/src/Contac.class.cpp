@@ -3,7 +3,7 @@
 Contact::Contact() 
     : _fname(""), _lname(""), _nname(""), _nbr(""), _dsc("") {}
 
-Contact::Contact(const char* pf, const char* pl, const char* pn, const char* pnbr, const char* pd)
+Contact::Contact(std::string pf, std::string  pl, std::string pn,std::string pnbr,std::string pd)
     : _fname(pf), _lname(pl), _nname(pn), _nbr(pnbr), _dsc(pd) {
 }
 

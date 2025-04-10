@@ -16,7 +16,7 @@ class 	Contact
 		std::string	get_fname( void ) const;
 		std::string	get_lname( void ) const;
 		std::string	get_nname( void ) const;
-		Contact(const char* pf, const char* pl, const char* pn, const char *pnbr, const char* pd);
+		Contact(std::string pf, std::string  pl, std::string pn,std::string pnbr,std::string pd);
 		Contact();
 		~Contact();
 	//	get_dsc( void ) const;

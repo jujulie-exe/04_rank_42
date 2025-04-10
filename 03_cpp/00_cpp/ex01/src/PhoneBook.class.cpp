@@ -44,12 +44,15 @@ bool	PhoneBook::_getline_value(std::string& str)
 void	PhoneBook::add ( void )
 {
 	size_t	i = 0;
+	static  int n = -1;
 	while (!_list[i].get_fname().empty() && i < 8)
 		i++;
 	if (i >= 8)
 	{
 		std::cout << "List of contact is full" << std::endl;
-		i = 0;
+		if (n >= 7)
+			n = -1;
+		i = ++n;
 	}
 
 	std::string fname, lname, nname, dsc, input_nbr;
@@ -74,7 +77,7 @@ void	PhoneBook::add ( void )
 	if (_getline_value(dsc) == false)
 		return ;
 	
-	_list[i] = Contact(fname.c_str(), lname.c_str(), nname.c_str(), input_nbr.c_str(), dsc.c_str());
+	_list[i] = Contact(fname, lname, nname, input_nbr, dsc);
 	
 	std::cout << "Contatto aggiunto all’indice " << i << std::endl;
 }
@@ -105,6 +108,13 @@ void	PhoneBook::search( void ) const
 	y = 0;
 	if (_list[0].get_fname().empty())
 		return ;
+	
+	std::cout << "\033[32m" <<std::string(50, '-') << std::endl;
+	std::cout << " | " <<  std::setfill ( ' ' ) << std::setw (10) << "Index" << "|";
+	_print_frmt("First Name");
+	_print_frmt("Last Name");
+	_print_frmt("NickName");
+	std::cout << std::endl;
 	while (!_list[y].get_fname().empty())
 	{
 		 //std::cout << std::setfill ('x') << std::setw (10);
@@ -123,7 +133,7 @@ void	PhoneBook::search( void ) const
 	if (_all_digit(input) == false)
 		return ;
 	int i = _my_atoi(input);
-	if (i > y)
+	if (i > --y)
 		std::cout << "index don't exist" << std::endl;
 	else
 		_list[i].get_info_contact();
