@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jfranco <jfranco@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 15:53:31 by jfranco           #+#    #+#             */
-/*   Updated: 2025/04/11 17:09:46 by jfranco          ###   ########.fr       */
+/*   Created: 2025/04/11 17:05:45 by jfranco           #+#    #+#             */
+/*   Updated: 2025/04/11 17:06:22 by jfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Zombie.Class.hpp"
 
-
-int	main()
+void	randomChump( std::string name )
 {
-	Zombie* n = n->newZombie("Fread");
-	n->announce();
-	randomChump("Tua madre");
-	delete n;
+	Zombie i;
+	i.set_name(name);
+	i.announce();
 }
