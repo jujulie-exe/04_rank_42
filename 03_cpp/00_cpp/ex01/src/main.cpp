@@ -4,9 +4,8 @@ int	main()
 {
 	std::string	cmd;
 	PhoneBook	istance;
-	while (1)
+	while (std::getline(std::cin, cmd) && !std::cin.eof())
 	{
-		std::getline(std::cin, cmd);
 		if (cmd == "ADD")
 			istance.add();
 		if (cmd == "SEARCH")

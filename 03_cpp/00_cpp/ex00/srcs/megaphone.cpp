@@ -6,7 +6,7 @@
 /*   By: jfranco <jfranco@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 14:58:13 by jfranco           #+#    #+#             */
-/*   Updated: 2025/04/04 16:12:09 by jfranco          ###   ########.fr       */
+/*   Updated: 2025/04/11 14:40:16 by jfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 			i = 0;
 			while (argv[y][i])
 			{
-				char ch = toupper(argv[y][i]);
+				char ch = std::toupper(argv[y][i]);
 				std::cout << ch;
 				i++;
 			}
