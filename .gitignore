@@ -27,8 +27,12 @@
 *.so
 *.so.*
 *.dylib
+# vim
+*.swp
+
 
 # Executables
+*.dll
 *.exe
 *.out
 *.app
