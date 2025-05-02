@@ -1,25 +1,29 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.Class.hpp                                   :+:      :+:    :+:   */
+/*   Weapon.Class.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jfranco <jfranco@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 14:19:29 by jfranco           #+#    #+#             */
-/*   Updated: 2025/04/29 15:22:00 by jfranco          ###   ########.fr       */
+/*   Created: 2025/04/16 14:30:50 by jfranco           #+#    #+#             */
+/*   Updated: 2025/05/02 14:41:15 by jfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-class HumanB
+#ifndef WEAPON_CLASS_HPP
+# define WEAPON_CLASS_HPP
+
+#include <iostream>
+#include <string>
+
+class	Weapon
 {
 	private:
-		Weapon*	_type;
-		std::string const	_name;
+		std::string	_WeaponType;
 	public:
-		HumanA();
-		~HumanA();
-		std::string	getName( void ) const;
-		std::string	attack( void ) const;
-		void	SetWeapon( std::string& const typeREF);
+		Weapon(const std::string& stringREF);
+		~Weapon();
+		void	setType( const std::string& type);
+		std::string	getType( void )	const;
 };
+#endif

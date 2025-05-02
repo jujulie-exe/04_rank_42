@@ -6,16 +6,16 @@
 /*   By: jfranco <jfranco@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 14:55:29 by jfranco           #+#    #+#             */
-/*   Updated: 2025/04/29 16:20:56 by jfranco          ###   ########.fr       */
+/*   Updated: 2025/05/02 14:46:24 by jfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../include/HumanB.hpp"
-#include "../include/Weapon.hpp"
+#include "../include/Weapon.Class.hpp"
+#include "../include/HumanB.Class.hpp"
 
-HumanA::HumanB(const std::string& nameREF)
-	: _name( nameREF )
+HumanB::HumanB(const std::string& nameREF)
+	: _name( nameREF ), _type ( NULL )
 {
 	return ; 
 }
@@ -27,10 +27,10 @@ std::string	HumanB::getName( void ) const
 
 
 
-std::string	HumanB::attack( void ) const
+void	HumanB::attack( void ) const
 {
 	if (_type)
-		std::cout << get_name() << " " << _type->getType() << std::endl; 
+		std::cout << getName() << " " << _type->getType() << std::endl; 
 }
 
 

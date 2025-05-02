@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.Class.cpp                                   :+:      :+:    :+:   */
+/*   newZombie.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jfranco <jfranco@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 14:30:50 by jfranco           #+#    #+#             */
-/*   Updated: 2025/04/16 15:09:15 by jfranco          ###   ########.fr       */
+/*   Created: 2025/04/11 17:07:08 by jfranco           #+#    #+#             */
+/*   Updated: 2025/05/02 15:23:35 by jfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-class	Weapon
+#include "../include/Zombie.Class.hpp"
+
+Zombie*	newZombie( std::string name )
 {
-	private:
-		std::string	_WeaponType;
-	public:
-		Weapon(const std::string& stringREF);
-		~Weapon();
-		std::string	setType( const std::string& type);
-		std::string	getType( void )	const;
-};
+	Zombie *ptr = new Zombie();
+	ptr->set_name( name ); 
+	return ptr;
+	
+}

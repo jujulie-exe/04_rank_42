@@ -6,14 +6,14 @@
 /*   By: jfranco <jfranco@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 13:00:36 by jfranco           #+#    #+#             */
-/*   Updated: 2025/04/16 13:29:53 by jfranco          ###   ########.fr       */
+/*   Updated: 2025/05/02 16:00:35 by jfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <iostream>
 #include <ostream>
 
 
-int	main(int argc, char **argv)
+int	main()
 {
 	std::string	str = "HI THIS IS BRAIN";
 	std::string	*stringPTR = &str;

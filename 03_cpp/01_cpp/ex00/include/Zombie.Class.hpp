@@ -6,7 +6,7 @@
 /*   By: jfranco <jfranco@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:11:59 by jfranco           #+#    #+#             */
-/*   Updated: 2025/04/11 16:33:41 by jfranco          ###   ########.fr       */
+/*   Updated: 2025/05/02 15:23:52 by jfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ class	Zombie
 	public:
 		Zombie();	//costruttere vuoto
 	
-		Zombie*		newZombie(std::string name);
 
 		//void		randomChump( std::string name );
 		std::string	get_name( void ) const;
@@ -33,9 +32,10 @@ class	Zombie
 	private: 
 		Zombie(const std::string& _name); //costruttore con parametri privato
 					    //
-		std::string	_name;
 		std::string	_sound;
+		std::string	_name;
 };
 
 		void		randomChump( std::string name );
+		Zombie*		newZombie(std::string name);
 #endif
