@@ -58,7 +58,8 @@ int	main(int argc, char **argv)
 		std::ifstream FileData(argv[1]);
 		if (!FileData)
 			return (error(0));
-		std::ofstream OutFile((std::string)argv[1] + ".replace");
+		std::string filename = std::string(argv[1]) + ".replace";
+		std::ofstream OutFile(filename.c_str());
 		FileData.get(ch);
 		std::string arg_trimmed = argv[2];
 		trim(arg_trimmed);
