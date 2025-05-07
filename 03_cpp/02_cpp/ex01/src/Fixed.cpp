@@ -1,4 +1,4 @@
-#include "Fixed.hpp"
+#include "../include/Fixed.hpp"
 
 Fixed::Fixed()
 	: _n( 0 )
@@ -7,11 +7,37 @@ Fixed::Fixed()
     // ctor
 }
 
+Fixed::Fixed(const int nbr)
+	: _n(  nbr << this->_ns)
+{
+
+	std::cout << "[INT]constructor called" << std::endl;
+	return ;
+}
+
+Fixed::Fixed(const float nbr)
+	: _n(static_cast<int>(std::roundf(nbr * (1 << _ns))))
+{
+	std::cout << "[FLOAT]constructor called" << std::endl;
+	return ;
+}
+
+
 Fixed::Fixed(Fixed const & src)
 {
 	std::cout << "Copy constructor called" << std::endl;
-    // copy ctor
-    *this = src;
+    	// copy ctor
+    	*this = src;
+}
+
+float	Fixed::toFloat( void ) const
+{
+	return (static_cast<float>(_n) / (1 << _ns));
+}
+
+int	Fixed::toInt( void ) const
+{
+	return _n >> this->_ns;
 }
 
 
@@ -39,8 +65,15 @@ void	Fixed::setRawBits( int const raw )
 	return ;
 }
 
+std::ostream &operator<<(std::ostream &obj, Fixed const &rhs)
+{
+	 obj << rhs.getRawBits();
+	 return (obj);
+}
+
 Fixed::~Fixed()
 {
+	std::cout << "Default Deconstructor called" << std::endl;
     // dtor
 }
 
