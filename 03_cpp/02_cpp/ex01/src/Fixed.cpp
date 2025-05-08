@@ -16,7 +16,7 @@ Fixed::Fixed(const int nbr)
 }
 
 Fixed::Fixed(const float nbr)
-	: _n(static_cast<int>(std::roundf(nbr * (1 << _ns))))
+	: _n(static_cast<int>(roundf(nbr * (1 << _ns))))
 {
 	std::cout << "[FLOAT]constructor called" << std::endl;
 	return ;
@@ -53,7 +53,7 @@ Fixed &Fixed::operator=(const Fixed &rhs)
 
 int	Fixed::getRawBits( void ) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
+	//std::cout << "getRawBits member function called" << std::endl;
 	return _n;
 }
 
@@ -67,7 +67,7 @@ void	Fixed::setRawBits( int const raw )
 
 std::ostream &operator<<(std::ostream &obj, Fixed const &rhs)
 {
-	 obj << rhs.getRawBits();
+	 obj << rhs.toFloat();
 	 return (obj);
 }
 

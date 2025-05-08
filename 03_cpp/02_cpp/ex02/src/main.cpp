@@ -18,6 +18,9 @@ int main( void )
 	std::cout << f << std::endl;
 	Fixed const l( Fixed( 10.50f ) / Fixed( 2.25f ) );
 	std::cout << l << std::endl;
-//	std::cout << Fixed::max( a, b ) << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+	std::cout << Fixed::min( a, b ) << std::endl;
+	std::cout <<  Fixed::max(l, f) << std::endl;
+	std::cout <<  Fixed::min(l, f) << std::endl;
 	return (0);
 }
