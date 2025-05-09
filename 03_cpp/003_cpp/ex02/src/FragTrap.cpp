@@ -1,0 +1,47 @@
+#include "../include/FragTrap.hpp"
+
+
+FragTrap::FragTrap()
+{
+    std::cout << "Default constructor called" << std::endl;
+    // ctor
+}
+
+FragTrap::FragTrap(const std::string& name)
+	: ClapTrap( name )
+{
+	_healthPoint = 100;
+	_Stamina = 100;
+	_AttackPoint = 30;
+	_MaxPoint = _healthPoint;
+    std::cout << "[FragTrap] constructor called" << std::endl;
+    // ctor
+}
+
+FragTrap::FragTrap(FragTrap const & src)
+{
+    std::cout << "Copy constructor called" << std::endl;
+    *this = src;
+}
+
+void	FragTrap::highFiveGuys( void )
+{
+	std::cout << "This member function displays a positive high-fives request on the standard output."<< std::endl;
+}
+
+FragTrap &FragTrap::operator=( FragTrap const &rhs)
+{
+    std::cout << "Copy assignment operator called" << std::endl;
+    if (this != &rhs)
+    {
+        // this->_n = rhs.getValue();
+    }
+    return *this;
+}
+
+FragTrap::~FragTrap()
+{
+    std::cout << "[FragTrap] Destructor called" << std::endl;
+    // dtor
+}
+
