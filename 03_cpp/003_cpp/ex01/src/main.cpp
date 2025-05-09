@@ -6,11 +6,14 @@
 /*   By: jfranco <jfranco@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 18:40:21 by jfranco           #+#    #+#             */
-/*   Updated: 2025/05/09 14:31:20 by jfranco          ###   ########.fr       */
+/*   Updated: 2025/05/09 17:07:07 by jfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ClapTrap.hpp"
+#include "../include/ScavTrap.hpp"
+
+
 
 int	main( void )
 {
@@ -52,4 +55,9 @@ int	main( void )
 	Instance1.attack("POPO");
 	Instance1.attack("POPO");
 	Instance1.attack("POPO");
+	ScavTrap	Instance2("Carlo");
+	Instance2.beRepaired(100);
+	Instance2.attack("POPO");
+	Instance2.guardGate();
+	Instance2.takeDamage(300000);
 }

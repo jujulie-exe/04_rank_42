@@ -3,9 +3,11 @@
 #include <string> 
 #include <ostream>
 #include <iostream>
+class ScavTrap;
 
 class ClapTrap
 {
+//	friend class ScavTrap;
 	public:
 		// COSTRUTTORI
 		ClapTrap();	//cannon
@@ -23,11 +25,14 @@ class ClapTrap
 		// DECOSTRUTTORI
 		virtual ~ClapTrap();	//Cannon
 
-	private:
+		protected:
 			const std::string	_name;
 			int					_healthPoint;
 			int					_AttackPoint;
 			int					_Stamina;
+			int					_MaxPoint;
 };
+
+
 #endif // CLAPTRAP_H
 

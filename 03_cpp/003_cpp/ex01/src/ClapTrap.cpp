@@ -8,9 +8,9 @@ ClapTrap::ClapTrap()
 }
 
 ClapTrap::ClapTrap(const std::string& name)
-		: _name ( name ), _healthPoint ( 10 ), _AttackPoint ( 0 ), _Stamina( 10 )
+		: _name ( name ), _healthPoint ( 10 ), _AttackPoint ( 0 ), _Stamina( 10 ), _MaxPoint( _healthPoint )
 {
-    std::cout << "Parametre name constructor called" << std::endl;
+    std::cout << "[CalpTrap] Parametre name constructor called" << std::endl;
     // ctor
 }
 
@@ -24,25 +24,25 @@ void	ClapTrap::attack(const std::string& target)
 {
 	if (_healthPoint > 0 && _Stamina > 0)
 	{
-		std::cout << "ClapTrap ha dato " << this->_AttackPoint << " a " << target << std::endl;
+		std::cout << _name << " ClapTrap ha dato " << this->_AttackPoint << " a " << target << std::endl;
 		--_Stamina;
 	}
 	else if (_healthPoint > 0 && _Stamina <= 0)
-		std::cout << "ClapTrap non ha piu stamina" << std::endl;
+		std::cout << _name << " ClapTrap non ha piu stamina" << std::endl;
 
 	else
-		std::cout << "ClapTrap é morto" << std::endl;
+		std::cout << _name << " ClapTrap é morto" << std::endl;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (_healthPoint > 0)
 	{
-		std::cout << "ClapTrap prendo " << amount << " di danno";
+		std::cout << _name << " ClapTrap prendo " << amount << " di danno ";
 		_healthPoint -= amount;
 		if (_healthPoint < 0)
 			_healthPoint = 0;
-		std::cout << " rimando con " << _healthPoint << std::endl;
+		std::cout << _name << " rimanendo con " << _healthPoint << std::endl;
 	}
 	else
 		return ;
@@ -53,20 +53,20 @@ void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (_Stamina > 0 && _healthPoint > 0)
 	{
-		std::cout << "ClapTrap si ripara di " << amount << " e perde un punto di stamina rimanendo con " << --_Stamina << std::endl;
-		if (_healthPoint < 10)
+		std::cout << _name << " ClapTrap si ripara di " << amount << " e perde un punto di stamina rimanendo con " << --_Stamina << std::endl;
+		if (_healthPoint < _MaxPoint)
 		{
 			_healthPoint += amount;
-			if (_healthPoint > 10)
-				_healthPoint = 10;
+			if (_healthPoint > _MaxPoint)
+				_healthPoint = _MaxPoint;
 		}
-		std::cout << "Ora ClapTrap ha " << _healthPoint << " punti di vita" << std::endl;
+		std::cout << _name << " Ora ClapTrap ha " << _healthPoint << " punti di vita" << std::endl;
 
 	}
 	else if (_healthPoint > 0  && _Stamina <= 0)
-		std::cout << "ClapTrap non puo piu riparsi" << std::endl;
+		std::cout << _name << " ClapTrap non puo piu riparsi" << std::endl;
 	else 
-		std::cout << "ClapTrap é morto" << std::endl;
+		std::cout << _name << " ClapTrap é morto" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=( ClapTrap const &rhs)
@@ -81,6 +81,6 @@ ClapTrap &ClapTrap::operator=( ClapTrap const &rhs)
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Destructor called" << std::endl;
+    std::cout << "[ClapTrap] Destructor called" << std::endl;
     // dtor
 }
