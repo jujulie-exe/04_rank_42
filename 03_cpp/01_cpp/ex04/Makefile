@@ -1,7 +1,7 @@
 NAME = ex04
 
 CC = g++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
 
 SRC_DIR = src
 SRCS =	$(SRC_DIR)/main.cpp
