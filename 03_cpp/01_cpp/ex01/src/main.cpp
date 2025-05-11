@@ -17,10 +17,13 @@ int	main()
 {
 	Zombie* n = newZombie("Fread");
 	n->announce();
-	randomChump("Tua madre");
+	randomChump("Bob");
 	delete n;
 	Zombie *list = zombieHorde(5, "HUGO");
 	list[0].announce();
+	list[1].announce();
+	list[2].announce();
+	list[3].announce();
 	list[4].announce();
 	delete[] list;
 }

@@ -19,6 +19,9 @@ int main()
 {
 	Weapon club = Weapon("crude spiked club");
 	HumanA bob("Bob", club);
+	//Do not compile
+//	Weapon test = NULL;
+//	HumanA Hillow("Hillow", test);
 	bob.attack();
 	club.setType("SPADA");
 	bob.attack();

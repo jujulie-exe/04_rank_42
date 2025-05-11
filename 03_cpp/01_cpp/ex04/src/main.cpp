@@ -39,7 +39,7 @@ int	error(int flags)
 	else if (flags == 1)
 		std::cerr << "Error: Incorrect number of arguments. Syntax: program <file> <search_word> <replace_word>" << std::endl;
 	else if (flags == 2)
-		std::cerr << "Error: you can search ad empty word" << std::endl;
+		std::cerr << "Error opening output file! or EOF in input file" << std::endl;
 	return -1;
 }
 
@@ -54,10 +54,16 @@ int	main(int argc, char **argv)
 			return (error(0));
 		std::string filename = std::string(argv[1]) + ".replace";
 		std::ofstream OutFile(filename.c_str());
+		FileData.peek();
+		if(!OutFile || FileData.eof())
+		{
+			FileData.close();
+			return (error(2));
+		}
 		std::string	result;
 		while (std::getline(FileData, word))
 		{
-				result += replaceAll(word, std::string(argv[3]), std::string(argv[2]));
+				result += replaceAll(word, std::string(argv[2]), std::string(argv[3]));
 				result += "\n";
 		}
 		OutFile << result;

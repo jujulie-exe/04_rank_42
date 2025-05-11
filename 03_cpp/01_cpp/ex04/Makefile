@@ -1,6 +1,6 @@
 NAME = ex04
 
-CC = g++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
 
 SRC_DIR = src
