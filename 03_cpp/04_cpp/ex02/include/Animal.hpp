@@ -15,7 +15,7 @@ class Animal
 
 		//FUNZIONI
 		virtual std::string	getType( void ) const;
-		virtual void		makeSound( void ) const;
+		virtual void		makeSound( void ) const = 0;
 
 		//OPERATORI
 		Animal& operator=(Animal const & rsh);	//Cannon

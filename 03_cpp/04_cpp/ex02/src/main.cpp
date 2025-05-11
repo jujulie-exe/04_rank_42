@@ -47,6 +47,8 @@ int	main()
 	size_t i = 0;
 
 	Animal	*meta[MAX_ARRAY];
+	// test for abstract class
+	//Animal test;
 	std::cout << "CTOR CALL " << MAX_ARRAY << std::endl;
 	while(i < MAX_ARRAY)
 	{
