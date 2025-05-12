@@ -24,10 +24,11 @@ Fixed::Fixed(const float nbr)
 
 
 Fixed::Fixed(Fixed const & src)
+	: _n (src.getRawBits())
 {
 	std::cout << "Copy constructor called" << std::endl;
     	// copy ctor
-    	*this = src;
+//    	*this = src;
 }
 
 float	Fixed::toFloat( void ) const

@@ -6,7 +6,7 @@
 /*   By: jfranco <jfranco@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 17:31:23 by jfranco           #+#    #+#             */
-/*   Updated: 2025/05/08 18:23:50 by jfranco          ###   ########.fr       */
+/*   Updated: 2025/05/12 14:03:33 by jfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ Fixed::Fixed(const float nbr)
 }
 
 Fixed::Fixed(Fixed const & src)
+	: _n(src.getRawBits())
 {
 //	std::cout << "Copy constructor called" << std::endl;
     	// copy ctor
-    	*this = src;
+//    	*this = src;
 }
 
 //*** FUNCTION 

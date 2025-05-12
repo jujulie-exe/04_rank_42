@@ -8,10 +8,11 @@ Fixed::Fixed()
 }
 
 Fixed::Fixed(Fixed const & src)
+	: _n(src.getRawBits())
 {
 	std::cout << "Copy constructor called" << std::endl;
     // copy ctor
-    *this = src;
+//    *this = src;
 }
 
 
