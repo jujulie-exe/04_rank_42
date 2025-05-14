@@ -33,13 +33,16 @@ void	ScavTrap::attack(const std::string& target)
 
 void	ScavTrap::guardGate()
 {
-	std::cout << "ScavTrap is now in Gate keeper mode." << std::endl;
+	if (this->_healthPoint > 0)
+		std::cout << "ScavTrap is now in Gate keeper mode." << std::endl;
+	return ; 
 }
 
 ScavTrap::ScavTrap(ScavTrap const & src)
+	: ClapTrap(src)
 {
     std::cout << "Copy constructor called" << std::endl;
-    *this = src;
+    //*this = src;
 }
 
 ScavTrap &ScavTrap::operator=( ScavTrap const &rhs)

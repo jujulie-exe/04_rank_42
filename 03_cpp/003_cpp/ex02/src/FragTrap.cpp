@@ -19,14 +19,17 @@ FragTrap::FragTrap(const std::string& name)
 }
 
 FragTrap::FragTrap(FragTrap const & src)
+	: ClapTrap(src)
 {
     std::cout << "Copy constructor called" << std::endl;
-    *this = src;
+    //*this = src;
 }
 
-void	FragTrap::highFiveGuys( void )
+void	FragTrap::highFivesGuys( void )
 {
-	std::cout << "This member function displays a positive high-fives request on the standard output."<< std::endl;
+	if (this->_healthPoint > 0)
+		std::cout << "This member function displays a positive high-fives request on the standard output."<< std::endl;
+	return ;
 }
 
 FragTrap &FragTrap::operator=( FragTrap const &rhs)

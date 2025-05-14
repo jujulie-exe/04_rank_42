@@ -6,7 +6,7 @@
 /*   By: jfranco <jfranco@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 18:40:21 by jfranco           #+#    #+#             */
-/*   Updated: 2025/05/09 14:31:20 by jfranco          ###   ########.fr       */
+/*   Updated: 2025/05/12 18:13:34 by jfranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,6 @@ int	main( void )
 	Instance1.attack("POPO");
 	Instance1.attack("POPO");
 	Instance1.attack("POPO");
+	ClapTrap	instance2(Instance1);
+	instance2.beRepaired( 9 );
 }

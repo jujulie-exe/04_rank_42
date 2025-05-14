@@ -15,9 +15,10 @@ ClapTrap::ClapTrap(const std::string& name)
 }
 
 ClapTrap::ClapTrap(ClapTrap const & src)
+		: _name (src._name ), _healthPoint ( src._healthPoint ), _AttackPoint ( src._AttackPoint ), _Stamina( src._Stamina ), _MaxPoint (src._MaxPoint)
 {
     std::cout << "Copy constructor called" << std::endl;
-    *this = src;
+    //*this = src;
 }
 
 void	ClapTrap::attack(const std::string& target)

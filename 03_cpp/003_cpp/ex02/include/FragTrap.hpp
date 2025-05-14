@@ -8,7 +8,8 @@ class FragTrap : public ClapTrap
 		FragTrap();	//cannon
 		FragTrap(const std::string& name);
 		FragTrap(FragTrap const & src);	//Cannon
-		void highFivesGuys(void);
+//		void	highFiveGuys( void );
+	void highFivesGuys(void);
 		FragTrap& operator=(FragTrap const & rsh);	//Cannon
 		virtual ~FragTrap();	//Cannon
 	private:
