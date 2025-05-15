@@ -37,6 +37,10 @@ FragTrap &FragTrap::operator=( FragTrap const &rhs)
     std::cout << "Copy assignment operator called" << std::endl;
     if (this != &rhs)
     {
+		_healthPoint = rhs._healthPoint;
+		_AttackPoint = rhs._AttackPoint;
+        _Stamina = rhs._Stamina;
+        _MaxPoint = rhs._MaxPoint;
         // this->_n = rhs.getValue();
     }
     return *this;

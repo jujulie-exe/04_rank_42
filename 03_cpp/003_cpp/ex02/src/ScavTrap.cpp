@@ -9,10 +9,10 @@ ScavTrap::ScavTrap()
 ScavTrap::ScavTrap(const std::string& name)
 	: ClapTrap( name )
 {
-	ClapTrap::_healthPoint = 100;
-	ClapTrap::_AttackPoint = 20;
-	ClapTrap::_Stamina = 50;
-	ClapTrap::_MaxPoint = _healthPoint;
+	_healthPoint = 100;
+	_AttackPoint = 20;
+	_Stamina = 50;
+	_MaxPoint = _healthPoint;
     std::cout << "[ScavTrap] Parametre constructor called" << std::endl;
     // ctor
 }
@@ -50,8 +50,11 @@ ScavTrap &ScavTrap::operator=( ScavTrap const &rhs)
     std::cout << "Copy assignment operator called" << std::endl;
     if (this != &rhs)
     {
-        // this->_n = rhs.getValue();
-    }
+		_healthPoint = rhs._healthPoint;
+		_AttackPoint = rhs._AttackPoint;
+        _Stamina = rhs._Stamina;
+        _MaxPoint = rhs._MaxPoint;
+	}
     return *this;
 }
 
