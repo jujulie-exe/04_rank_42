@@ -8,7 +8,7 @@ class Cat : public Animal
 		Cat();	//cannon
 		Cat(Cat const & src);	//Cannon
 		Cat& operator=(Cat const & rsh);	//Cannon
-		virtual void		makeSound( void ) const override;
+		virtual void		makeSound( void ) const;
 		virtual ~Cat();	//Cannon
 	private:
 };

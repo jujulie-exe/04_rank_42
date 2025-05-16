@@ -11,7 +11,7 @@ class Cat : public Animal
 		Cat& operator=(Cat const & rsh);	//Cannon
 
 		// FUNZ
-		virtual void		makeSound( void ) const override;
+		virtual void		makeSound( void ) const;
 		void				setIdeas(size_t index, const std::string& idea);
 		std::string			getIdeas(size_t index) const;
 		Brain&				getPtrIdeas( void ) const;

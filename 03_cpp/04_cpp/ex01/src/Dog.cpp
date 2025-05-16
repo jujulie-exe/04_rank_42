@@ -49,7 +49,7 @@ Dog &Dog::operator=( Dog const &rhs)
     if (this != &rhs)
     {
          this->type = rhs.getType();
-		 if (b != nullptr);
+		 if (b != NULL)
 			delete this->b;
 		 this->b = new Brain();
 		 *this->b = *rhs.b;

@@ -8,7 +8,7 @@ class Dog : public Animal
 		Dog();	//cannon
 		Dog(Dog const & src);	//Cannon
 		Dog& operator=(Dog const & rsh);	//Cannon
-		virtual void		makeSound( void ) const override;
+		virtual void		makeSound( void ) const;
 		virtual ~Dog();	//Cannon
 	private:
 };

@@ -10,7 +10,7 @@ class Dog : public Animal
 		Dog(Dog const & src);	//Cannon
 
 		//FUNZIONI
-		virtual void		makeSound( void ) const override;
+		virtual void		makeSound( void ) const;
 		void				setIdeas(size_t index, const std::string& idea);
 		std::string			getIdeas(size_t index) const;
 		Brain&				getPtrIdeas( void ) const;
